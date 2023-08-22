@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: prometheus-node-exporter
+  labels:
+    k8s-app: prometheus-node-exporter
+spec:
+  selector:
+    matchLabels:
+      app: prometheus-node-exporter
+  template:
+    metadata:
+      labels:
+        app: prometheus-node-exporter
+    spec:
+      containers:
+      - name: prometheus-node-exporter
+        image: quay.io/prometheus/node-exporter:latest
+        args:
+        - "--path.rootfs=/host"
+        ports:
+        - containerPort: 9100
+          name: metrics
+        volumeMounts:
+        - name: rootfs
+          mountPath: /host
+      hostNetwork: true
+      hostPID: true
+      volumes:
+      - name: rootfs
+        hostPath:
+          path: /
+
