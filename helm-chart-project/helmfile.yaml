@@ -1,0 +1,9 @@
+releases:
+ - name: nodejsapp
+   namespace: test
+   chart: ./nodejsapp/nodejsapp
+ - name: nodejsapp
+   namespace: dev
+   chart: ./nodejsapp/nodejsapp
+   values:
+      - ./nodejsapp/nodejsapp/dev/values.yaml
