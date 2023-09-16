@@ -1,9 +1,60 @@
+repositories:
+  - name: prometheus
+    url: https://prometheus-community.github.io/helm-charts
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+  - name: springapp
+    url: git+https://github.com/cxharles/project-deployment/tree/main/helm-chart-project@springapp?ref=main&sparse=0
+
+
+
 releases:
  - name: nodejsapp
    namespace: test
    chart: ./nodejsapp/nodejsapp
+   installed: # true
  - name: nodejsapp
    namespace: dev
    chart: ./nodejsapp/nodejsapp
    values:
       - ./nodejsapp/nodejsapp/dev/values.yaml
+   installed: # true
+ - name: pythonapp
+   namespace: test
+   chart: ./pythonapp/pythonapp
+   installed: # true
+ - name: pythonapp
+   namespace: dev
+   chart: ./pythonapp/pythonapp
+   values:
+      - ./pythonapp/pythonapp/dev/values.yaml
+   installed: # true
+ - name: springapp
+   namespace: test
+   chart: ./springapp/
+   installed:  false
+ - name: springapp
+   namespace: dev
+   chart: ./springapp/
+   values:
+      - ./springapp/dev/values.yaml
+   installed:  false
+ - name: springapp-1
+   namespace: test
+   chart: ./springapp-1/springapp-1
+   installed: # true   
+ - name: springapp-1
+   namespace: dev
+   chart: ./springapp-1/springapp-1
+   values:
+      - ./springapp-1/springapp-1/dev/values.yaml
+   installed: # true
+ - name: prometheus
+   namespace: prometheus
+   chart: prometheus/prometheus
+ - name: grafana
+   namespace: grafana
+   chart: grafana/grafana
+ - name: springapp
+   namespace: test 
+   chart: springapp/springapp
